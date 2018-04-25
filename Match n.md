@@ -1,4 +1,9 @@
 
+String length
+
+`^.{1,35}$`
+
+
 No identical consecutive characters
 
 `^(([\w])(?!\2))+$`
