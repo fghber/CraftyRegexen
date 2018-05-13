@@ -12,7 +12,11 @@
 \/\*[\S\s]*?\*\/
 ```
 
+## Check that string CONTAINS a valid hierarchy of parenthesis or not
 
+```
+\(((?>[^()]+)|(?R))*\)
+```
 
 ## Get everything between parenthesis not enclosed by double quotes
 
