@@ -46,7 +46,7 @@ Drop-in pattern: just replace the first character, that acts as a separator
 
 ### .. quotes allowing escaped quotes
 
-#### PCRE
+#### PCRE (quickest)
 ```
 ["'](?:(?<=")[^"\\]*(?s:\\.[^"\\]*)*"|(?<=')[^'\\]*(?s:\\.[^'\\]*)*')
 ```
@@ -70,3 +70,8 @@ or simply:
 (["'])(?:(?=(\\?))\2.)*?\1
 ```
 `([""'])` match a quote; `((?=(\\?))\2.)` if backslash exists, gobble it, and whether or not that happens, match a character; `*?` match many times (non-greedily, as to not eat the closing quote); `\1` match the same quote that was use for opening.  
+
+Optimized version
+```
+(['"])((\\\1|.)*?)\1
+```
