@@ -7,9 +7,9 @@ RegEx.Matches(myText,searchPatten).Cast<Match>().Select(x => $"{x.Groups[1].Valu
 
 ## Extend result with Select new
 
-Here : Match pattern and apply Replace on Match Collection, i.e. `RegEx.MatchAndReplace(myText,searchPattern,replacePattern);`
+Here : Match a pattern and apply Replace on the resulting Match Collection, something like. `RegEx.MatchAndReplace(myText,searchPattern,replacePattern);`
 
-This should give us the Index and the Length of each match along what it would be replaced with.  
+This allows us to get the Index and the Length of each match along what it would be replaced with.  
 <!-- We want to use LinQ since Regex.Replace internally uses the Matches but doesn't expose its content, nor Regex expose the interpreter it uses for the replacement pattern. -->
 
 ```
