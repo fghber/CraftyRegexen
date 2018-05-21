@@ -3,7 +3,9 @@
 ## Projection/Mapping
 
 Project match result directly to formated result string
-RegEx.Matches(myText,searchPatten).Cast<Match>().Select(x => $"{x.Groups[1].Value} {x.Groups[2].Value}")
+```
+RegEx.Matches(myText,searchPatten).Cast<Match>().Select(x => $"{x.Groups[1].Value} {x.Groups[2].Value}").ToArray();
+```
 
 ## Extend result with Select new
 
