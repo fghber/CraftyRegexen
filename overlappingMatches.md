@@ -1,13 +1,13 @@
 # Overlapping Matches
 
 Using a matching group in a lookahead, and then consume one character to move forward, e.g.
+
+**nn**nn  
+n**nn**n  
+nn**nn**  
+
 ```
-**nn**nn
-n**nn**n
-nn**nn**
-```
-```
-(n)(?=(n))
+(?=(nn))n
 ```
 The innner pattern can be as complex as the regex engine supports it:
 ```
