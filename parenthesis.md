@@ -20,9 +20,15 @@
 
 ## Get everything between parenthesis not enclosed by double quotes
 
-Drop-in pattern: just replace the first character, that acts as a separator
+Drop-in csv/tsv pattern: just replace the first character, that acts as a separator
 ```
 /\t(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/gm;  
+```
+
+
+## Get everything between parenthesis allowing escaping special characters
+```
+(\((?>[^()\\]++|\\.|(?1))*+\))
 ```
 
 ## Matching 3 different types of balanced parentheses with .NET balancing groups
