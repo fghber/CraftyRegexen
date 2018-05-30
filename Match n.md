@@ -4,6 +4,9 @@ String length
 
 `^.{1,35}$`
 
+String that containts a substring ONLY once
+
+`^(?:(?!<scr>).)*<scr>(?!.*<scr>).*$`
 
 No identical consecutive characters
 
