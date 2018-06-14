@@ -18,10 +18,14 @@
 \(((?>[^()]+)|(?R))*\)
 ```
 
-## Get everything between parenthesis not enclosed by double quotes
-
-
-
+## Get everything between braces not enclosed by quotes
+```
+("|').*?\1(*SKIP)(*FAIL)|\{(?:[^{}]|(?R))*\}
+```
+... allowing escaping special characters
+```
+("|').*?\1(*SKIP)(*FAIL)|{(?>[^{}\\]++|\\.|(?R))*+}
+```
 
 ## Get everything between parenthesis allowing escaping special characters
 ```
