@@ -11,6 +11,9 @@
 ```
 \/\*[\S\s]*?\*\/
 ```
+## Get everything between single quotes allowing inline escaping using the rolling loop technique
+
+'((?:[^\\']|\\.)*)'
 
 ## Check that string CONTAINS a valid hierarchy of parenthesis or not
 
