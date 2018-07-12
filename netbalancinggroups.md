@@ -1,5 +1,7 @@
 # .NET Balancing Groups
 
+## Matchinb nested balanced parenthesis
+
 ... still not a parser
 
 ```
@@ -41,3 +43,24 @@ public class Example
    }
 }
 ```
+
+#### Backreferences To Subtracted Groups
+
+
+
+#### [Matching Palindromes](https://www.regular-expressions.info/balancing.html)
+
+
+
+```
+^(?'letter'[a-z])+[a-z]?(?:\k'letter'(?'-letter'))+(?(letter)(?!))$
+```
+or more condensed
+
+```
+(?x)^(?<l>\w)+\w?
+(\k<l>(?<-l>))+
+(?(l)(?!))$ 
+```
+
+https://www.regular-expressions.info/refrecurse.html
