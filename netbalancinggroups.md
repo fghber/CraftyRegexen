@@ -18,7 +18,7 @@ This is the generic solution for matching balanced constructs using .NET's balan
 
 
 
-## Matchinb nested balanced parenthesis
+## Matching nested balanced parenthesis
 
 applies this technique to match a string in which all parentheses are perfectly balanced.
 ```
@@ -66,6 +66,29 @@ public class Example
    }
 }
 ```
+
+### .. nested tags, e.g. X/HTML
+```
+<div[^>]*>[^<>]*(((?'Open'<div[^>]*>)[^<>]*)+((?'-Open'</div>)[^<>]*)+)*(?(Open)(?!))</div>
+```
+
+Or more generalized (needs some more work):
+
+<                         #The outermost left parenthesis 
+    [^<>]*                #The outermost left parenthesis is not the content of the brackets 
+    ( 
+        ( 
+            (?'Open'<)    #Met a left parenthesis, write on the blackboard"Open" 
+            [^<>]*       #Matching left parenthesis is not the content of the brackets 
+        )+ 
+        ( 
+            (?'-Open'>) #Met the right bracket, wipe a"Open" 
+            [^<>]*        #Matching right parenthesis is not behind the bracket content 
+        )+ 
+    )* 
+    (?(Open)(?!))         #In front of the outermost parentheses, judgment and not erase the blackboard "Open"; if there is failure, matching 
+>                         #The outermost right parenthesis
+
 
 #### Backreferences To Subtracted Groups
 
