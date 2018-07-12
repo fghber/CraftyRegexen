@@ -1,6 +1,29 @@
 # .NET Balancing Groups
 
+
+Basic pattern
+```
+^(?:(?'open'o)+(?'-open'c)+)+(?(open)(?!))$
+```
+Optimized pattern using an atomic groups
+```
+^(?>(?'open'o)+(?'-open'c)+)+(?(open)(?!))$
+```
+allow any number of letters m anywhere in the string, while still requiring all o's and c's to be balanced
+```
+^m*(?>(?>(?'open'o)m*)+(?>(?'-open'c)m*)+)+(?(open)(?!))$
+```
+This is the generic solution for matching balanced constructs using .NET's balancing groups or capturing group subtraction feature. You can replace o, m, and c with any regular expression, as long as no two of these three can match the same text.
+
+
+
+
 ## Matchinb nested balanced parenthesis
+
+applies this technique to match a string in which all parentheses are perfectly balanced.
+```
+^[^()]*(?>(?>(?'open'\()[^()]*)+(?>(?'-open'\))[^()]*)+)+(?(open)(?!))$ 
+```
 
 ... still not a parser
 
