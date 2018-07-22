@@ -87,3 +87,15 @@ Optimized version
 ```
 (['"])(?:(?!\1|\\).|\\.)*\1
 ```
+
+
+### Formula structure like (a b c) d e (f g) h
+```
+(?(DEFINE)
+  (?<open>\()
+  (?<close>\))
+  (?<val>(?&open)|(\w\s?)+)
+  (?<start>(?&open)(?&val)(?&close))
+)
+(?&start)|(?<=\s)\w
+```
