@@ -50,6 +50,33 @@
 (?(Stack) (?!))
 ```
 
+### Match every thinkable type of balanced parentheses and content in-between with a PCRE
+
+https://stackoverflow.com/questions/27827819/can-conditionals-be-used-to-pair-balance-group-elements  
+https://regex101.com/r/bX8yH4/6
+
+```
+(?(DEFINE)
+  (?<curly>  \{        \g<content>*? \}      )
+  (?<square> \[        \g<content>*? \]      )
+  (?<pascal> \bbegin\b \g<content>*? \bend\b )
+  (?<lua>    --\[      \g<content>*? --\]    )
+
+  (?<nested> \g<curly> | \g<square> | \g<pascal> | \g<lua> )
+
+  (?<content>
+    # Match non-recursive content (atomically)
+    (?: (?! [{}\[\]] | \bbegin\b | \bend\b | --[\[\]] ) .)++
+    # Or recurse
+    | \g<nested>
+  )
+)
+
+\g<nested>
+```
+
+https://stackoverflow.com/a/27828040/8291949
+
 ## Get everything between double quotes
 
 ```
