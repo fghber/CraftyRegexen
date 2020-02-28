@@ -19,10 +19,19 @@ vegetable: Carrot, Lettuce, Cellery
 
 Yields all fruits after the preamble `fruit:` as individual match.
 
-[Contiguous Matches: `\G` in .NET](https://docs.microsoft.com/en-us/dotnet/standard/base-types/anchors-in-regular-expressions#Contiguous)
-which shows a kind of useless example since the .NET Regex engine is able to match repeated capture groups also without `\G`.
+Smart use of `\K` can help to preserve some format, e.g.: https://regex101.com/r/ZQpgGa/1
+```
+(?:\[#\d+\K,|(?<!^)\G,)(#\d+)
+```
+substituting `_$1` in `#2335, IFCRELASSOCIATESMATERIAL, '2ON6$yXXD1GAAH8whbdZmc', #5,$,$, [#40,#221,#268,#281],#2334`
 
-https://stackoverflow.com/questions/14365969/how-the-anchor-z-and-g-works-in-ruby
+Yields: `#2335, IFCRELASSOCIATESMATERIAL, '2ON6$yXXD1GAAH8whbdZmc', #5,$,$, [#40_#221_#268_#281],#2334`  
+
+
+See also: [Contiguous Matches: `\G` in .NET](https://docs.microsoft.com/en-us/dotnet/standard/base-types/anchors-in-regular-expressions#Contiguous)
+which shows a kind of useless example since the .NET Regex engine is able to match repeated capture groups also without `\G`.  
+
+https://stackoverflow.com/questions/14365969/how-the-anchor-z-and-g-works-in-ruby  
 Say you have a list of words that are separated by arbitrary characters that cannot be well predicted (or there's too many possibilities to list). You'd like to match these words where each word is its own match up until a particular word, after which you don't want to match any more words. For example:
 
 > foo,bar.baz:buz'fuzz*hoo-har/haz|fil^bil!bak
